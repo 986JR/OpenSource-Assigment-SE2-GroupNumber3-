@@ -33,40 +33,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = 'Invalid username or password.';
     }
 }
+
+$page_title = 'Login';
+$page_description = 'Access the student information management dashboard.';
+$base_path = '..';
+$active_page = 'login';
+
+require_once '../includes/header.php';
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Student Information Management System</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
-</head>
-<body>
-    <main class="container">
-        <section class="login-section">
-            <h1>Login</h1>
-            <p>Enter your account details to access the system.</p>
+<main class="page-shell auth-layout">
+    <section class="auth-card">
+        <span class="eyebrow">Secure Access</span>
+        <h2>Welcome Back</h2>
+        <p>Sign in with your school administrator account.</p>
 
-            <?php if ($error !== ''): ?>
-                <p class="error-message"><?php echo htmlspecialchars($error); ?></p>
-            <?php endif; ?>
+        <?php if ($error !== ''): ?>
+            <div class="alert alert-error"><?php echo htmlspecialchars($error); ?></div>
+        <?php endif; ?>
 
-            <form action="login.php" method="POST">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" required>
+        <form action="login.php" method="POST" class="stacked-form">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" autocomplete="username" required>
+            </div>
+
+            <div class="form-group password-field">
+                <label for="password">Password</label>
+                <div class="input-action">
+                    <input type="password" id="password" name="password" autocomplete="current-password" required>
+                    <button class="ghost-button password-toggle" type="button" data-target="password">Show</button>
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
+            <button class="button button-primary full-width" type="submit">Login</button>
+        </form>
+    </section>
+</main>
 
-                <button type="submit">Login</button>
-            </form>
-        </section>
-    </main>
-</body>
-</html>
+<?php require_once '../includes/footer.php'; ?>

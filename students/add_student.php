@@ -72,93 +72,88 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $school_level = '';
     }
 }
+
+$page_title = 'Register Student';
+$page_description = 'Add a new student record to the school database.';
+$base_path = '..';
+$active_page = 'add';
+
+require_once '../includes/header.php';
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register Student - Student Information Management System</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
-</head>
-<body>
-    <header class="site-header">
-        <div class="container">
-            <h1>Register Student</h1>
-            <p>Add a new student record to the system.</p>
-        </div>
-    </header>
+<main class="page-shell">
+    <section class="content-panel">
+        <?php if (!empty($errors)): ?>
+            <div class="alert alert-error">
+                <?php foreach ($errors as $error): ?>
+                    <p><?php echo htmlspecialchars($error); ?></p>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
 
-    <main class="container">
-        <section class="form-section">
-            <?php if (!empty($errors)): ?>
-                <div class="error-message">
-                    <?php foreach ($errors as $error): ?>
-                        <p><?php echo htmlspecialchars($error); ?></p>
-                    <?php endforeach; ?>
-                </div>
-            <?php endif; ?>
+        <?php if ($success !== ''): ?>
+            <div class="alert alert-success"><?php echo htmlspecialchars($success); ?></div>
+        <?php endif; ?>
 
-            <?php if ($success !== ''): ?>
-                <p class="success-message"><?php echo htmlspecialchars($success); ?></p>
-            <?php endif; ?>
+        <form action="add_student.php" method="POST" class="student-form">
+            <div class="form-group">
+                <label for="registration_number">Registration Number</label>
+                <input
+                    type="text"
+                    id="registration_number"
+                    name="registration_number"
+                    value="<?php echo htmlspecialchars($registration_number); ?>"
+                    placeholder="Example: STD-001"
+                    required
+                >
+            </div>
 
-            <form action="add_student.php" method="POST">
-                <div class="form-group">
-                    <label for="registration_number">Registration Number</label>
-                    <input
-                        type="text"
-                        id="registration_number"
-                        name="registration_number"
-                        value="<?php echo htmlspecialchars($registration_number); ?>"
-                        required
-                    >
-                </div>
+            <div class="form-group">
+                <label for="first_name">First Name</label>
+                <input
+                    type="text"
+                    id="first_name"
+                    name="first_name"
+                    value="<?php echo htmlspecialchars($first_name); ?>"
+                    required
+                >
+            </div>
 
-                <div class="form-group">
-                    <label for="first_name">First Name</label>
-                    <input
-                        type="text"
-                        id="first_name"
-                        name="first_name"
-                        value="<?php echo htmlspecialchars($first_name); ?>"
-                        required
-                    >
-                </div>
+            <div class="form-group">
+                <label for="last_name">Last Name</label>
+                <input
+                    type="text"
+                    id="last_name"
+                    name="last_name"
+                    value="<?php echo htmlspecialchars($last_name); ?>"
+                    required
+                >
+            </div>
 
-                <div class="form-group">
-                    <label for="last_name">Last Name</label>
-                    <input
-                        type="text"
-                        id="last_name"
-                        name="last_name"
-                        value="<?php echo htmlspecialchars($last_name); ?>"
-                        required
-                    >
-                </div>
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender" required>
+                    <option value="">Select gender</option>
+                    <option value="Male" <?php echo $gender === 'Male' ? 'selected' : ''; ?>>Male</option>
+                    <option value="Female" <?php echo $gender === 'Female' ? 'selected' : ''; ?>>Female</option>
+                </select>
+            </div>
 
-                <div class="form-group">
-                    <label for="gender">Gender</label>
-                    <select id="gender" name="gender" required>
-                        <option value="">Select gender</option>
-                        <option value="Male" <?php echo $gender === 'Male' ? 'selected' : ''; ?>>Male</option>
-                        <option value="Female" <?php echo $gender === 'Female' ? 'selected' : ''; ?>>Female</option>
-                    </select>
-                </div>
+            <div class="form-group">
+                <label for="school_level">School Level</label>
+                <select id="school_level" name="school_level" required>
+                    <option value="">Select school level</option>
+                    <option value="Primary" <?php echo $school_level === 'Primary' ? 'selected' : ''; ?>>Primary</option>
+                    <option value="Secondary" <?php echo $school_level === 'Secondary' ? 'selected' : ''; ?>>Secondary</option>
+                </select>
+            </div>
 
-                <div class="form-group">
-                    <label for="school_level">School Level</label>
-                    <select id="school_level" name="school_level" required>
-                        <option value="">Select school level</option>
-                        <option value="Primary" <?php echo $school_level === 'Primary' ? 'selected' : ''; ?>>Primary</option>
-                        <option value="Secondary" <?php echo $school_level === 'Secondary' ? 'selected' : ''; ?>>Secondary</option>
-                    </select>
-                </div>
+            <div class="form-actions">
+                <button class="button button-primary" type="submit">Register Student</button>
+                <a class="button button-secondary" href="view_students.php">View Students</a>
+            </div>
+        </form>
+    </section>
+</main>
 
-                <button type="submit">Register Student</button>
-            </form>
-        </section>
-    </main>
-</body>
-</html>
+<?php require_once '../includes/footer.php'; ?>

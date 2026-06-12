@@ -1,44 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Information Management System</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
-    <header class="site-header">
-        <div class="container">
+<?php
+require_once 'includes/session.php';
+
+$page_title = 'Student Information Management System';
+$page_description = '';
+$base_path = '.';
+$active_page = 'home';
+
+require_once 'includes/header.php';
+?>
+
+<main class="page-shell">
+    <section class="hero-section">
+        <div class="hero-content">
+            <span class="eyebrow">CP222 Open Source Assignment</span>
             <h1>Student Information Management System</h1>
-            <p>For Tanzanian primary and secondary schools</p>
-        </div>
-    </header>
-
-    <main class="container">
-        <section class="welcome-section">
-            <h2>Welcome</h2>
             <p>
-                This project will help schools manage student records, user access,
-                and student information in a simple PHP and MySQL application.
+                Manage student records, user access, and registration details through a clean PHP and MySQL system.
             </p>
-        </section>
-
-        <section class="features-section">
-            <h2>Planned Features</h2>
-            <ul>
-                <li>User login and logout</li>
-                <li>Student registration</li>
-                <li>View student records</li>
-                <li>Search students by registration number</li>
-                <li>Edit student information on a development branch</li>
-            </ul>
-        </section>
-    </main>
-
-    <footer class="site-footer">
-        <div class="container">
-            <p>&copy; <?php echo date('Y'); ?> Student Information Management System</p>
+            <div class="hero-actions">
+                <?php if (is_logged_in()): ?>
+                    <a class="button button-primary" href="students/add_student.php">Register Student</a>
+                    <a class="button button-secondary" href="students/view_students.php">View Records</a>
+                <?php else: ?>
+                    <a class="button button-primary" href="auth/login.php">Login to System</a>
+                <?php endif; ?>
+            </div>
         </div>
-    </footer>
-</body>
-</html>
+        <div class="hero-panel" aria-label="System summary">
+            <div>
+                <strong>Primary</strong>
+                <span>School level support</span>
+            </div>
+            <div>
+                <strong>Secondary</strong>
+                <span>Student records support</span>
+            </div>
+            <div>
+                <strong>Secure</strong>
+                <span>Session based access</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="summary-grid">
+        <article class="summary-card">
+            <span class="card-number">01</span>
+            <h2>User Access</h2>
+            <p>Login, logout, and session management protect student pages from unauthorized access.</p>
+        </article>
+
+        <article class="summary-card">
+            <span class="card-number">02</span>
+            <h2>Student Records</h2>
+            <p>Register students and view their registration number, names, gender, and school level.</p>
+        </article>
+
+        <article class="summary-card">
+            <span class="card-number">03</span>
+            <h2>Search</h2>
+            <p>Find a student quickly using a unique registration number.</p>
+        </article>
+    </section>
+</main>
+
+<?php require_once 'includes/footer.php'; ?>

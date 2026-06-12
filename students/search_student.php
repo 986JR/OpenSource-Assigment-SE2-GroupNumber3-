@@ -29,85 +29,62 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
+
+$page_title = 'Search Student';
+$page_description = 'Find a student using their registration number.';
+$base_path = '..';
+$active_page = 'search';
+
+require_once '../includes/header.php';
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Student - Student Information Management System</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
-</head>
-<body>
-    <header class="site-header">
-        <div class="container">
-            <h1>Search Student</h1>
-            <p>Find a student using their registration number.</p>
-        </div>
-    </header>
-
-    <main class="container">
-        <section class="form-section">
-            <div class="page-actions">
-                <a href="add_student.php">Register New Student</a>
-                <a href="view_students.php">View Students</a>
-                <a href="../auth/logout.php">Logout</a>
+<main class="page-shell">
+    <section class="content-panel search-layout">
+        <form action="search_student.php" method="POST" class="search-form">
+            <div class="form-group">
+                <label for="registration_number">Registration Number</label>
+                <input
+                    type="text"
+                    id="registration_number"
+                    name="registration_number"
+                    value="<?php echo htmlspecialchars($registration_number); ?>"
+                    placeholder="Enter registration number"
+                    required
+                >
             </div>
 
-            <form action="search_student.php" method="POST">
-                <div class="form-group">
-                    <label for="registration_number">Registration Number</label>
-                    <input
-                        type="text"
-                        id="registration_number"
-                        name="registration_number"
-                        value="<?php echo htmlspecialchars($registration_number); ?>"
-                        required
-                    >
+            <button class="button button-primary" type="submit">Search Student</button>
+        </form>
+
+        <?php if ($message !== ''): ?>
+            <div class="alert alert-error"><?php echo htmlspecialchars($message); ?></div>
+        <?php endif; ?>
+
+        <?php if ($student): ?>
+            <div class="result-card">
+                <div class="result-heading">
+                    <span class="eyebrow">Match Found</span>
+                    <h2><?php echo htmlspecialchars($student['first_name'] . ' ' . $student['last_name']); ?></h2>
+                    <p><?php echo htmlspecialchars($student['registration_number']); ?></p>
                 </div>
 
-                <button type="submit">Search</button>
-            </form>
+                <dl class="details-grid">
+                    <div>
+                        <dt>Gender</dt>
+                        <dd><?php echo htmlspecialchars($student['gender']); ?></dd>
+                    </div>
+                    <div>
+                        <dt>School Level</dt>
+                        <dd><?php echo htmlspecialchars($student['school_level']); ?></dd>
+                    </div>
+                    <div>
+                        <dt>Created At</dt>
+                        <dd><?php echo htmlspecialchars($student['created_at']); ?></dd>
+                    </div>
+                </dl>
+            </div>
+        <?php endif; ?>
+    </section>
+</main>
 
-            <?php if ($message !== ''): ?>
-                <p class="error-message"><?php echo htmlspecialchars($message); ?></p>
-            <?php endif; ?>
-
-            <?php if ($student): ?>
-                <div class="student-result">
-                    <h2>Student Details</h2>
-                    <table>
-                        <tbody>
-                            <tr>
-                                <th>Registration Number</th>
-                                <td><?php echo htmlspecialchars($student['registration_number']); ?></td>
-                            </tr>
-                            <tr>
-                                <th>First Name</th>
-                                <td><?php echo htmlspecialchars($student['first_name']); ?></td>
-                            </tr>
-                            <tr>
-                                <th>Last Name</th>
-                                <td><?php echo htmlspecialchars($student['last_name']); ?></td>
-                            </tr>
-                            <tr>
-                                <th>Gender</th>
-                                <td><?php echo htmlspecialchars($student['gender']); ?></td>
-                            </tr>
-                            <tr>
-                                <th>School Level</th>
-                                <td><?php echo htmlspecialchars($student['school_level']); ?></td>
-                            </tr>
-                            <tr>
-                                <th>Created At</th>
-                                <td><?php echo htmlspecialchars($student['created_at']); ?></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            <?php endif; ?>
-        </section>
-    </main>
-</body>
-</html>
+<?php require_once '../includes/footer.php'; ?>
