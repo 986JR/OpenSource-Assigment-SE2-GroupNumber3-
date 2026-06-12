@@ -1,4 +1,32 @@
+(function () {
+    const currentTheme = localStorage.getItem('theme') || 'dark';
+    if (currentTheme === 'light') {
+        document.body.classList.add('light-theme');
+    }
+})();
+
 document.addEventListener('DOMContentLoaded', function () {
+    // Theme toggle button logic
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+        const icon = themeToggle.querySelector('.theme-toggle-icon');
+        
+        // Sync icon state on page load
+        if (document.body.classList.contains('light-theme')) {
+            if (icon) icon.textContent = '☀️';
+        } else {
+            if (icon) icon.textContent = '🌙';
+        }
+
+        themeToggle.addEventListener('click', function () {
+            const isLight = document.body.classList.toggle('light-theme');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            if (icon) {
+                icon.textContent = isLight ? '☀️' : '🌙';
+            }
+        });
+    }
+
     const navToggle = document.querySelector('.nav-toggle');
     const navLinks = document.querySelector('.nav-links');
 
