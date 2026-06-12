@@ -36,7 +36,14 @@ Phase 7: Documentation update.
 4. Open phpMyAdmin at `http://localhost/phpmyadmin`.
 5. Import `database.sql`.
 6. Add a user account to the `users` table using a hashed password.
+Add this into the users table
+
+-> INSERT INTO users (username, password) VALUES ('admin', '$2y$10$j5GmYmvNUpSwaEUvXsfZdO1ysJ1mhy4L7q/NPVTKIx60ew/YGeILe');
+username: admin
+password: admin123
+
 7. Open the project in the browser using `http://localhost/OpenSource-Assigment-SE2-GroupNumber3-/`.
+
 
 ## Git Commands Used
 
