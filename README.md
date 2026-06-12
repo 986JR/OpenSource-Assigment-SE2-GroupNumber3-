@@ -14,10 +14,6 @@ The Software Project Tracking System is a PHP and MySQL web application for Soft
 
 This project helps a software development team keep track of project records in one place. Authenticated users can add project details, view project progress status, and search for projects using the project name.
 
-## Current Phase
-
-Phase 7: Documentation update.
-
 ## Features
 
 - User authentication and session management
