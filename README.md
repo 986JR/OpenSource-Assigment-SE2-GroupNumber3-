@@ -1,4 +1,4 @@
-# Software Project Tracking System
+# Student Information Management System
 
 ## Team Information
 
@@ -8,27 +8,40 @@
 
 ## Project Description
 
-The Software Project Tracking System is a web-based application designed to assist software development teams in managing and monitoring software projects efficiently. The system enables users to record project information, track project progress and status, and search projects by project name. It also includes a user management module for authentication and access control.
+The Student Information Management System is a PHP and MySQL web application designed for Tanzanian primary and secondary schools. The system will help schools manage student records, user authentication, and student search operations.
 
-## Project Objectives
+## Current Phase
 
-* Record software project information.
-* Monitor and display project status.
-* Search projects using project names.
-* Manage user accounts and authentication.
-* Improve organization and tracking of software development activities.
+Phase 1: Project initialization.
+
+## Planned Features
+
+- User login and logout
+- Session management
+- Student registration
+- Student records display
+- Search students by registration number
+- Student update feature on a development branch
 
 ## Technologies Used
 
-* PHP
-* MySQL
-* HTML
-* CSS
-* JavaScript
-* Git
-* GitHub
+- PHP
+- MySQL
+- HTML
+- CSS
+- JavaScript
+- Git
+- GitHub
 
-## Repository Information
+## Folder Structure
 
-This project is developed and maintained using Git and GitHub as part of the CP 222 Open Source Technologies course assignment.
+```text
+config/
+assets/
+  css/
+  js/
+includes/
+auth/
+students/
+```
 
