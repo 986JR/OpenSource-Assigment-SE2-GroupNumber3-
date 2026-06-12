@@ -24,7 +24,7 @@ This project helps a software development team keep track of project records in 
 - JavaScript mobile navigation and date validation
 - Project update feature planned on a development branch
 
-## Installation
+## Installation.
 
 1. Install XAMPP.
 2. Start Apache and MySQL from the XAMPP Control Panel.
