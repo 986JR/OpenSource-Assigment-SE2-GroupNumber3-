@@ -71,7 +71,7 @@ require_once '../includes/header.php';
                 <dl class="details-grid">
                     <div>
                         <dt>Status</dt>
-                        <dd><?php echo htmlspecialchars($project['status']); ?></dd>
+                        <dd><span class="status-pill status-<?php echo strtolower(str_replace(' ', '-', $project['status'])); ?>"><?php echo htmlspecialchars($project['status']); ?></span></dd>
                     </div>
                     <div>
                         <dt>Start Date</dt>

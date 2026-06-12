@@ -56,7 +56,7 @@ require_once '../includes/header.php';
                             <tr>
                                 <td><strong><?php echo htmlspecialchars($project['project_name']); ?></strong></td>
                                 <td><?php echo htmlspecialchars($project['description']); ?></td>
-                                <td><span class="status-pill"><?php echo htmlspecialchars($project['status']); ?></span></td>
+                                <td><span class="status-pill status-<?php echo strtolower(str_replace(' ', '-', $project['status'])); ?>"><?php echo htmlspecialchars($project['status']); ?></span></td>
                                 <td><?php echo htmlspecialchars($project['start_date']); ?></td>
                                 <td><?php echo htmlspecialchars($project['end_date'] ?? 'Not set'); ?></td>
                                 <td><?php echo htmlspecialchars($project['created_at']); ?></td>
