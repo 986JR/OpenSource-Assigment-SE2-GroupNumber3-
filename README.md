@@ -41,8 +41,8 @@ Add this into the users table
 INSERT INTO users (username, password) VALUES ('admin', '$2y$10$j5GmYmvNUpSwaEUvXsfZdO1ysJ1mhy4L7q/NPVTKIx60ew/YGeILe');
 ```
 ```text
-Username: admin/
-Password: admin123/
+Username: admin
+Password: admin123
 ```
 
 7. Open the project in the browser using `http://localhost/OpenSource-Assigment-SE2-GroupNumber3-/`.
